@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2024-06-16
 - Initial release.
 
-## [0.1.0] - 2024-11-06
+## [1.0.0] - 2024-11-06
 
 ### Added
 - `uniqueId()` function.
@@ -16,3 +16,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 - Old functions that were implemented in version 0.1.0.
+
+## [1.0.1] - 2024-11-06
+
+### Fixed
+- CHANGELOG.md.
+- npm-publish github action.
