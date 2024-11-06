@@ -8,18 +8,15 @@ npm install @vladbndko/vid
 
 ## Usage
 ```ts
-import { vid } from '@vladbndko/vid';
+import { uniqueId, uuid4 } from '@vladbndko/vid';
 
-vid(); // VJddZKXA4WzDcvAaTxpndD9HlWgPi6wV
+uniqueId(); // EQ2ftdO4z7sJBio4T1TYV1SjVziEzN2U
 
-vid({ prefix: 'test' }); // testfhTtqilmyYtmF6ZMt1DpfiwZ78Ah4ynr
+uniqueId({ prefix: 'test_' }); // test_Aw677caa8WEgp8pDwEHP32b7WQPcEQhf
 
-vid({ length: 10 }); // t9INktucGr
+uniqueId({ length: 10 }); // nSGiLUj2P7
 
-vid({ characters: 'ABC', length: 3 }); // CBA
+uniqueId({ characters: 'ABC', length: 3 }); // CBA
 
-// Create an instance
-const createId = vid.create({ length: 20, prefix: 'test' });
-
-createId(); // testF6ZMt1DpfiwZ78Ah4ynr
+uuid4(); // c5b1058c-b851-4be5-a6af-8237f08debec
 ```

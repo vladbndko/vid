@@ -1,6 +1,6 @@
 {
   "name": "@vladbndko/vid",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Random unique id, uuid v4, password generation",
   "keywords": [
     "id",
