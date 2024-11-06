@@ -1,21 +1,17 @@
-type VidOptions = {
+type UniqueIdOptions = {
   length: number;
   prefix: string;
   characters: string;
 };
 
-type VidFunction = {
-  (args?: Partial<VidOptions>): string;
-  create(args?: Partial<VidOptions>): () => string;
-};
-
-const defaultOptions: VidOptions = {
+const defaultUniqueIdOptions: UniqueIdOptions = {
   length: 32,
   prefix: '',
   characters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
 };
 
-function generate(options: VidOptions) {
+export function uniqueId(customOptions: Partial<UniqueIdOptions> = {}) {
+  const options = { ...defaultUniqueIdOptions, ...customOptions };
   let result = options.prefix;
   for (let i = 0; i < options.length; i++) {
     const randomIndex = Math.floor(Math.random() * options.characters.length);
@@ -24,15 +20,10 @@ function generate(options: VidOptions) {
   return result;
 }
 
-export const vid: VidFunction = Object.assign(
-  (args: Partial<VidOptions> = {}) => {
-    return generate({ ...defaultOptions, ...args });
-  },
-  {
-    create: (args: Partial<VidOptions> = {}) => {
-      return () => {
-        return generate({ ...defaultOptions, ...args });
-      };
-    },
-  },
-);
+export function uuid4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    const r = Math.trunc(Math.random() * 16);
+    const v = c === 'x' ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+}

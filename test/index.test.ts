@@ -1,19 +1,15 @@
 import { expect, test } from 'vitest';
-import { vid } from '../src';
+import { uniqueId, uuid4 } from '../src';
 
-test('vid calls', () => {
-  expect(vid()).length(32);
-  expect(vid({ length: 12 })).length(12);
-  expect(vid({ length: 12, prefix: 'test' })).length(16);
-  expect(vid({ prefix: 'test' })).length(36);
-
-  expect(vid({ length: 1, characters: 'A' })).length(1);
-  expect(vid({ length: 3, characters: 'A' })).toBe('AAA');
+test('uniqueId', () => {
+  expect(uniqueId()).length(32);
+  expect(uniqueId({ length: 10 })).length(10);
+  expect(uniqueId({ prefix: 'test_' }).startsWith('test_')).toBeTruthy();
+  expect(uniqueId({ characters: 'AAA', length: 4 })).toBe('AAAA');
 });
 
-test('vid instance', () => {
-  const generateId = vid.create({ length: 10, prefix: 'test' });
-  const id = generateId();
-  expect(id.indexOf('test')).toBe(0);
-  expect(id).length(14);
+test('uuid4', () => {
+  for (let i = 0; i <= 100; ++i) {
+    expect(uuid4()).toMatch(/^[\da-f]{8}-[\da-f]{4}-4[\da-f]{3}-[89ab][\da-f]{3}-[\da-f]{12}$/i);
+  }
 });
